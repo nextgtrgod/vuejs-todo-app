@@ -3,8 +3,6 @@
 
 * [Vue.js](https://vuejs.org/)
 
-![vue.js todo app screen](https://image.ibb.co/b1eRWa/vuejs_todo_app.jpg)
-
 
 #### Todo
 - [x] templates
