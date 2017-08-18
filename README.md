@@ -7,8 +7,8 @@
 #### Todo
 - [x] templates
 - [x] styles
-- [ ] methods (add, delete, edit, toggle complete)
-- [ ] filters ('all tasks', 'completed', ...)
+- [x] methods (add, delete, edit, toggle complete)
+- [x] filters ('all tasks', 'completed', ...)
 - [ ] vuex store
 - [ ] localStorage saving
 - [ ] more animations!
