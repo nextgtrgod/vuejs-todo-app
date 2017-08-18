@@ -1,8 +1,18 @@
 
 <template lang='pug'>
 	#app
-		AddTodo
-		TodoList
+		AddTodo(
+			:onAdd='handleAdd'
+		)
+		TodoList(
+			:todoData='todoData'
+			:onToggle='handleToggle'
+			:onDelete='handleDelete'
+		)
+		Filters(
+			:chosenFilter='chosenFilter'
+			:onChangeFilter='handleChangeFilter'
+		)
 
 </template>
 
@@ -10,12 +20,73 @@
 <script>
 	import AddTodo from './AddTodo';
 	import TodoList from './TodoList';
+	import Filters from './Filters';
 
-	// componet registration
+	// component registration
 	export default {
+		data: function() {
+			return {
+				todoData: [],
+				chosenFilter: 'ALL'
+			}
+		},
+
+		created() {
+			if (localStorage) {
+				this.todoData = JSON.parse(localStorage.getItem('todoData'))
+			}
+		},
+
+		methods: {
+			handleAdd(title) {
+				let newTodo = {
+					id: (new Date).getTime(),
+					title,
+					completed: false
+				};
+				this.todoData.push(newTodo);
+			},
+			handleEdit(id) {
+
+			},
+			handleToggle(id) {
+				let todoData = this.$data.todoData; // shorthand
+
+				let index = todoData.findIndex(item => item.id === id);
+
+				todoData[index].completed = !todoData[index].completed;
+			},
+			handleDelete(id) {
+				let index = this.todoData.findIndex(item => item.id === id);
+
+				this.todoData = [
+					...this.todoData.slice(0, index),
+					...this.todoData.slice(index + 1)
+				];
+			},
+
+			handleChangeFilter(filter) {
+				this.chosenFilter = filter;
+				
+				let storageData = JSON.parse(localStorage.getItem('todoData'));
+
+				switch (this.chosenFilter) {
+					case 'ALL':
+						this.todoData = storageData;
+						break;
+					case 'ACTIVE':
+						this.todoData = storageData.filter(item => item.completed !== true);
+						break;
+					case 'DONE':
+						this.todoData = storageData.filter(item => item.completed === true);
+						break;
+				}
+			}
+		},
 		components: {
 			AddTodo,
-			TodoList
+			TodoList,
+			Filters
 		}
 	}
 
@@ -24,17 +95,18 @@
 
 <style lang='stylus'>
 
+	@import '../styles/normalize.styl'
 	@import '../styles/variables.styl'
 	@import '../styles/animation.styl'
 
 	#app
-		width 300px
+		position relative
+		width 350px
 		min-height 480px
 		margin auto
 		margin-top 50px
 		background-color: $color-blue
 		padding 20px
-		position relative
 		opacity 0
 		animation fade-in, shadow-black
 		animation-duration .2s

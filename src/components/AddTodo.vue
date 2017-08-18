@@ -1,7 +1,11 @@
 
 <template lang='pug'>
-	form
-		input(type='text' :placeholder='message')
+	form(@submit.prevent='add')
+		input(
+			placeholder='enter task name'
+			maxlength='30'
+			v-model='todoTitle'
+		)
 		button(type='submit') add
 </template>
 
@@ -9,12 +13,22 @@
 <script>
 	export default {
 		name: 'AddTodo',
-		data: () => {
+		data: function() {
 			return {
-				message: 'Hello Vue 2!'
+				todoTitle: ''
 			}
 		},
-		created: () => console.log('AddTodo is here!')
+		props: [
+			'onAdd'
+		],
+		methods: {
+			add() {
+				if(this.todoTitle) {
+					this.onAdd(this.todoTitle);
+					this.todoTitle = '';
+				}
+			}
+		}
 	}
 </script>
 
@@ -60,4 +74,5 @@
 			animation-fill-mode forwards
 			&:hover
 				box-shadow 4px 4px 0px #111
+
 </style>
