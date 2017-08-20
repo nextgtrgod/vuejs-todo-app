@@ -37,15 +37,19 @@
 	@import '../styles/animation.styl'
 
 	li
-		padding 10px
-		margin 15px 0
+		position relative
+		padding 0 10px
+		margin-bottom 15px
+		height 40px
+		line-height 40px
 		background: linear-gradient(to right, #FFF 50%, $color-green 50%)
 		background-size 200% 100%
 		background-position left bottom
-		transition .2s
-		position relative
-		transition-name background, box-shadow
-		transition-duration .2s
+		color #111
+		transition all .2s
+		overflow hidden
+		// transition-name background, box-shadow
+		// transition-duration .2s
 		// opacity 0
 		// animation move-from-left .4s, fade-in .2s .2s
 		// animation-fill-mode forwards

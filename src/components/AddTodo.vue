@@ -3,10 +3,10 @@
 	form(@submit.prevent='add')
 		input(
 			placeholder='enter task name'
-			maxlength='30'
+			maxlength='27'
 			v-model='todoTitle'
 		)
-		button(type='submit') add
+		button(type='submit') Add
 </template>
 
 
@@ -60,6 +60,7 @@
 			width 70px
 			height 34px
 			font-family: $font-family-orbitron
+			letter-spacing 1px
 			background-color: $color-green
 			font-size 14px
 			line-height 34px

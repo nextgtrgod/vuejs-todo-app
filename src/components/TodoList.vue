@@ -1,7 +1,7 @@
 
 <template lang='pug'>
 
-	transition-group(name='list' tag='ul' appear)
+	transition-group(name='list' tag='ul')
 		TodoItem(
 			v-for='todoDataItem in todoData' 
 			:key='todoDataItem.id'

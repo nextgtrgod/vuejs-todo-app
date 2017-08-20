@@ -101,10 +101,10 @@
 
 	#app
 		position relative
-		width 350px
+		width 320px
 		min-height 480px
 		margin auto
-		margin-top 50px
+		margin-top 60px
 		background-color: $color-blue
 		padding 20px
 		opacity 0

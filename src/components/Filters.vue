@@ -35,26 +35,29 @@
 
 	ul#filters
 		position absolute
-		top 10px
-		left -55px
+		top 65px
+		right -37px
 		li
 			margin 10px 0
 			padding 10px
 			font-size 11px
 			letter-spacing 1px
 			font-family: $font-family-orbitron
+			writing-mode tb
+			// text-orientation upright
+			// text-transform uppercase
 			color #FFF
 			background-color: $color-blue
 			cursor pointer
-			border 1px solid #111
+			box-shadow 5px 5px 0px #111
 			transition all .2s
-			animation fade-in .4s
+			animation fade-in .8s
 			&:hover
-				box-shadow 4px 4px 0px #111
+				transform translateX(5px)
 			&.selected
 				color #111
 				background-color: $color-green
-				transform scale(1.1)
-				transform-origin 100% 50%
+				transform scale(1.1) translateX(5px)
+				// transform-origin 100% 50%
 
 </style>
