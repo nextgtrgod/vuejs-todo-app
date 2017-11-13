@@ -28,6 +28,7 @@ export default new Vuex.Store({
 			const index = state.todoData.findIndex(item => item.id === id);
 
 			state.todoData[index].completed = !state.todoData[index].completed;
+			localData().set(state.todoData);
 		},
 
 		DELETE(state, id) {
@@ -37,6 +38,7 @@ export default new Vuex.Store({
 				...state.todoData.slice(0, index),
 				...state.todoData.slice(index + 1)
 			];
+			localData().set(state.todoData);
 		},
 
 		FILTER(state, filter) { state.chosenFilter = filter }
