@@ -3,29 +3,24 @@
 
 	li(
 		:class='{ completed: todoDataItem.completed }'
-		@click.self='() => onToggle(todoDataItem.id)'
+		@click.self='toggle(todoDataItem.id)'
 	)
 		| {{ todoDataItem.title }}
-		Icon(
-			type='delete',
-			:action='() => onDelete(todoDataItem.id)'
+		button(
+			class='icon delete'
+			@click='_delete(todoDataItem.id)'
 		)
 
 </template>
 
 
 <script>
-	import Icon from './Icon';
-
 	export default {
 		name: 'TodoItem',
-		props: [
-			'todoDataItem',
-			'onToggle',
-			'onDelete'
-		],
-		components: {
-			Icon
+		props: [ 'todoDataItem' ],
+		methods: {
+			toggle(id) { this.$store.dispatch('toggleTodo', id) },
+			_delete(id) { this.$store.dispatch('deleteTodo', id) }
 		}
 	}
 </script>
@@ -35,6 +30,7 @@
 
 	@import '../styles/variables.styl'
 	@import '../styles/animation.styl'
+	@import '../styles/icon.styl'
 
 	li
 		position relative

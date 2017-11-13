@@ -3,28 +3,30 @@
 
 	ul#filters
 		li(
-			@click='onChangeFilter("ALL")'
+			@click='setFilter("ALL")'
 			:class='{ selected: (chosenFilter === "ALL") }') all
 		li(
-			@click='onChangeFilter("ACTIVE")'
+			@click='setFilter("ACTIVE")'
 			:class='{ selected: (chosenFilter === "ACTIVE") }') active
 		li(
-			@click='onChangeFilter("DONE")'
+			@click='setFilter("DONE")'
 			:class='{ selected: (chosenFilter === "DONE") }') done
 
 </template>
 
 
 <script>
-
 	export default {
 		name: 'Filter',
-		props: [
-			'chosenFilter',
-			'onChangeFilter'
-		]
+		computed: {
+			chosenFilter() {
+				return this.$store.getters.chosenFilter
+			}
+		},
+		methods: {
+			setFilter(filterType) { this.$store.dispatch('filterTodo', filterType) }
+		}
 	}
-
 </script>
 
 
@@ -52,6 +54,7 @@
 			box-shadow 5px 5px 0px #111
 			transition all .2s
 			animation fade-in .8s
+			user-select none
 			&:hover
 				transform translateX(5px)
 			&.selected

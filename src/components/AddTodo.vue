@@ -18,14 +18,12 @@
 				todoTitle: ''
 			}
 		},
-		props: [
-			'onAdd'
-		],
 		methods: {
 			add() {
+				this.todoTitle = this.todoTitle.trim();
 				if(this.todoTitle) {
-					this.onAdd(this.todoTitle);
-					this.todoTitle = '';
+					this.$store.dispatch('addTodo', this.todoTitle);
+					this.todoTitle = ''; // clear input
 				}
 			}
 		}
@@ -70,7 +68,7 @@
 			cursor pointer
 			opacity 0
 			animation fade-in, move-from-right
-			animation-duration .2s
+			animation-duration .4s
 			animation-delay .6s
 			animation-fill-mode forwards
 			&:hover

@@ -2,12 +2,9 @@
 <template lang='pug'>
 
 	transition-group(name='list' tag='ul')
-		TodoItem(
-			v-for='todoDataItem in todoData' 
+		TodoItem(v-for='todoDataItem in todoData' 
 			:key='todoDataItem.id'
 			:todoDataItem='todoDataItem'
-			:onToggle='onToggle'
-			:onDelete='onDelete'
 		)
 
 </template>
@@ -18,13 +15,13 @@
 
 	export default {
 		name: 'TodoList',
-		props: [
-			'todoData',
-			'onToggle',
-			'onDelete'
-		],
 		components: {
 			TodoItem
+		},
+		computed: {
+			todoData() {
+				return this.$store.getters.todoData
+			}
 		}
 	}
 </script>
